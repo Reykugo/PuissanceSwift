@@ -8,6 +8,17 @@
 
 import Foundation
 
-class player{
-    let 
+class Player{
+    
+    let id: Int
+    
+    init(_ id:Int){
+        self.id = id
+    }
+        
+    func add(board:Board, box:Int) {
+        if board.isEmpty(box: box) == false{
+            board.add(box:box, player: id)
+        }
+    }
 }

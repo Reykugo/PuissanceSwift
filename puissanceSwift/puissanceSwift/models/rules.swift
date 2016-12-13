@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+class Rules{
+    
+    func winOnVertical (board: Board) -> Bool{
+        return false
+    }
+    
+    func winOnHorizontal (board: Board) -> Bool{
+        return false
+    }
+    
+    func winOnDiagonal (board: Board) -> Bool{
+        return false
+    }
+    
+}
