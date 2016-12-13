@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  puissanceSwift
+//  PuissanceSwift
 //
-//  Created by Developer on 12/12/2016.
+//  Created by Developer on 13/12/2016.
 //  Copyright © 2016 Developer. All rights reserved.
 //
 
