@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var board = Board()
 
     override func viewDidLoad() {
         super.viewDidLoad()
