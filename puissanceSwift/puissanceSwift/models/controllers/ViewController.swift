@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var board = Board()
-
+     var gameManager = GameManager()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,6 +21,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // Jeux de test
+    
+    @IBAction func test(_ sender: AnyObject) {
+        gameManager.test()
+    }
+    
+    /////////////////////////////////
 
 
 }

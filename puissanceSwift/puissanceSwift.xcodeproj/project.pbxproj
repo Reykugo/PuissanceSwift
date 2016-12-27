@@ -17,6 +17,7 @@
 		8B765EBE1E00452D00FB9F14 /* rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765EBA1E00452D00FB9F14 /* rules.swift */; };
 		8B765EC21E00453C00FB9F14 /* storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765EC01E00453C00FB9F14 /* storage.swift */; };
 		8B765EC31E00453C00FB9F14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765EC11E00453C00FB9F14 /* ViewController.swift */; };
+		8B789D0B1E12F1D5005223F6 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B789D0A1E12F1D5005223F6 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		8B765EBA1E00452D00FB9F14 /* rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rules.swift; sourceTree = "<group>"; };
 		8B765EC01E00453C00FB9F14 /* storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storage.swift; sourceTree = "<group>"; };
 		8B765EC11E00453C00FB9F14 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8B789D0A1E12F1D5005223F6 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				8B765EC01E00453C00FB9F14 /* storage.swift */,
 				8B765EC11E00453C00FB9F14 /* ViewController.swift */,
+				8B789D0A1E12F1D5005223F6 /* GameManager.swift */,
 			);
 			name = controllers;
 			path = models/controllers;
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B765EBD1E00452D00FB9F14 /* player.swift in Sources */,
+				8B789D0B1E12F1D5005223F6 /* GameManager.swift in Sources */,
 				8B765E9B1E00321600FB9F14 /* AppDelegate.swift in Sources */,
 				8B765EBB1E00452D00FB9F14 /* AI.swift in Sources */,
 				8B765EC21E00453C00FB9F14 /* storage.swift in Sources */,

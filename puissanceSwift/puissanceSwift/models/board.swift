@@ -10,22 +10,23 @@ import Foundation
 
 class Board{
     
+    let number_of_raw = 6
+    let number_of_column = 7
     let empty = 0
     let player1 = 1
     let player2 = 2
     
-    var last_box_played = ["raw":0, "column": 0]
+    var last_box_played = ["raw":0, "column": 0, "player": 0]
     
     var boxes: [[Int]]
     
     init(){
         //Creer un tableau de 7 cases correspondant aux lignes et contenant sur chacune d'elle un tableau de 7 cases correspondant aux colonnes
-        boxes = Array(repeating: Array(repeating: 0, count: 7), count: 7)
-        print(boxes)
+        boxes = Array(repeating: Array(repeating: 0, count: number_of_column), count: number_of_raw)
     }
     
-    func isEmpty(raw:Int, column:Int) -> Bool{
-        if boxes[raw][column] == empty{
+    func isEmpty(_ object:Int) -> Bool{
+        if object == empty{
             return true
         }
         return false
@@ -42,14 +43,30 @@ class Board{
         return true
     }
     
-    func add(raw:Int, column:Int, player:Int){
-        boxes[raw][column] = player
-        last_box_played["raw"] = raw
+    func add(column:Int, player:Int){
+        var new_raw = 0 //designe la ligne ou on va poser le pion
+        for raw in boxes{
+            if isEmpty(raw[column]) == true{
+                if new_raw == number_of_raw - 1{
+                    boxes[new_raw][column] = player
+                    break
+                }else{
+                    new_raw += 1
+                }
+            }else{
+                new_raw -= 1
+                boxes[new_raw][column] = player
+                break
+            }
+        }
+        last_box_played["raw"] = new_raw
         last_box_played["column"] = column
+        last_box_played["player"] = player
     }
     
     func remove(){
-        if isEmpty(raw: last_box_played["raw"]!, column: last_box_played["column"]!) == false{
+        let box = boxes[last_box_played["raw"]!][last_box_played["column"]!]
+        if isEmpty(box) == false{
             boxes[last_box_played["raw"]!][last_box_played["column"]!] = 0
         }
     }

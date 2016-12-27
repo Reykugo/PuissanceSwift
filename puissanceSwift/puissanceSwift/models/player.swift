@@ -17,8 +17,8 @@ class Player{
     }
         
     func add(board:Board, raw:Int, column:Int) {
-        if board.isEmpty(raw:raw, column:column) == false{
-            board.add(raw:raw, column:column, player: id)
+        if board.isEmpty(board.boxes[raw][column]) == true{
+            board.add(column:column, player: id)
         }
     }
 }
