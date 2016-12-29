@@ -57,6 +57,60 @@ class Rules{
     }
     
     func winOnDiagonal (board: Board) -> Bool{
+        let player = board.last_box_played["player"]!
+        var validate = true
+        
+        for r in 0...board.number_of_raw - 1{
+            for c in (0...board.number_of_column - 1){
+                if board.boxes[r][c] == player{
+                    if c <= board.number_of_column - 4 && r <= board.number_of_column - 4{
+                        guard board.boxes[r+1][c+1] == player else{
+                            validate = false
+                            continue
+                        }
+                        guard board.boxes[r+2][c+2] == player else{
+                            validate = false
+                            continue
+                        }
+                        
+                        guard board.boxes[r+3][c+3] == player else{
+                            validate = false
+                            continue
+                        }
+                        if validate{
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        validate = true
+        
+        for r in 0...board.number_of_raw - 1{
+            for c in (0...board.number_of_column - 1).reversed() {
+                if board.boxes[r][c] == player{
+                    if c >= 3 && r <= board.number_of_column - 4{
+                        guard board.boxes[r+1][c-1] == player else{
+                            validate = false
+                        continue
+                        }
+                        guard board.boxes[r+2][c-2] == player else{
+                            validate = false
+                            continue
+                        }
+                    
+                        guard board.boxes[r+3][c-3] == player else{
+                            validate = false
+                            continue
+                        }
+                        if validate{
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        
         return false
     }
     
@@ -66,6 +120,10 @@ class Rules{
         }
         
         if winOnHorizontal(board: board) == true{
+            return board.last_box_played["player"]!
+        }
+        
+        if winOnDiagonal(board: board) == true{
             return board.last_box_played["player"]!
         }
         
