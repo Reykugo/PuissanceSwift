@@ -54,6 +54,9 @@ class Board{
                     new_raw += 1
                 }
             }else{
+                guard new_raw > 0 else{
+                    break
+                }
                 new_raw -= 1
                 boxes[new_raw][column] = player
                 break
