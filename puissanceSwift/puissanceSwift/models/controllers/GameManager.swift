@@ -19,9 +19,9 @@ class GameManager: Rules{
     var win = 0
     
     func play_turn(column:Int){
-        if board.last_box_played["player"] == turn_of{
+        /*if board.last_box_played["player"] == turn_of{
             board.remove()
-        }
+        }*/
         if turn_of == 1{
             player1.add(board: board,  column: column)
         
@@ -29,7 +29,7 @@ class GameManager: Rules{
             player2.add(board: board, column: column)
         }
         win = check_win(board: board)
-        
+        validate_turn()
     }
     
     func validate_turn(){
@@ -40,7 +40,7 @@ class GameManager: Rules{
                 turn_of = 1
             }
         }else{
-            print("player \(win) have win!!!")
+            print("player \(win) has win!!!")
         }
     }
     
@@ -60,173 +60,116 @@ class GameManager: Rules{
     func test_remove(){
         play_turn(column:5)
         print(board.boxes)
-        print(" ")
         
         play_turn(column:1)
         print(board.boxes)
-        print(" ")
     }
     
     func test_switch_turn(){
         play_turn(column:1)
         print(board.boxes)
-        print(" ")
-        
-        validate_turn()
         
         play_turn(column:3)
         print(board.boxes)
-        print(" ")
     }
     
     func test_stacking_pawns(){
         play_turn(column:1)
         print(board.boxes)
-        print(" ")
-        
-        validate_turn()
         
         play_turn(column:1)
         print(board.boxes)
-        print(" ")
+
     }
     
     func test_win_horizontal(){
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column: 2)
-        validate_turn()
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column: 3)
-        validate_turn()
         
         play_turn( column:1)
-        validate_turn()
         
         play_turn( column: 4)
         print(board.boxes)
-        print(" ")
-        
-        validate_turn()
-        
     }
     
     func test_win_vertical(){
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column: 2)
-        validate_turn()
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column: 3)
-        validate_turn()
         
         play_turn( column:1)
-        validate_turn()
         
         play_turn( column: 5)
-        validate_turn()
         
         play_turn( column:1)
         print(board.boxes)
-        print(" ")
-        validate_turn()
     }
     
     func test_win_diagonal_one(){
         
         play_turn(column:0) //1
-        validate_turn()
         
         play_turn(column:1)
-        validate_turn()
         
         play_turn(column:1)//1
-        validate_turn()
         
         play_turn(column:2)
-        validate_turn()
         
         play_turn(column:2)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:2)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:4)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:3)//1
-        validate_turn()
-        
         
         print(board.boxes)
-        print(" ")
-        validate_turn()
-        
     }
     
     func test_win_diagonal_two(){
         play_turn(column:6) //1
-        validate_turn()
         
         play_turn(column:5)
-        validate_turn()
         
         play_turn(column:5)//1
-        validate_turn()
-        
+ 
         play_turn(column:4)
-        validate_turn()
         
         play_turn(column:4)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:4)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:2)//1
-        validate_turn()
         
         play_turn(column:3)
-        validate_turn()
         
         play_turn(column:3)//1
-        validate_turn()
-        
         
         print(board.boxes)
-        print(" ")
-        validate_turn()
     }
 ///////////////////////////////////////////////////////////////////////////
 }
