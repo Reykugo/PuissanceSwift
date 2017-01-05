@@ -37,14 +37,39 @@ class ViewController: UIViewController {
 
     @IBAction func play(_ sender: UIButton) {
         gameManager.play_turn(column: sender.tag)
-        let player = gameManager.board.last_box_played["player"]
-        if  player == 1{
-            sender.setImage(p1_image, for: .normal)
+        show_board()
+    }
+    
+    func show_board(){
+        let board = gameManager.board
+        for raw in 0...board.number_of_raw - 1{
+            for column in 0...board.number_of_column - 1{
+                for button in get_buttons(){
+                    set_image_to_button(button, raw: raw, column: column, board: board)
+                }
+            }
         }
-        else if player == 2{
-            sender.setImage(p2_image, for: .normal)
+    }
+    
+    func set_image_to_button(_ button:UIButton, raw:Int,column:Int, board:Board){
+        if button.currentTitle == "\(raw)_\(column)"{
+            if board.boxes[raw][column] == 1{
+                button.setImage(p1_image, for: .normal)
+            }
+            else if board.boxes[raw][column] == 2{
+                button.setImage(p2_image, for: .normal)
+            }
         }
-        
+    }
+    
+    func get_buttons() -> Array<UIButton>{
+        var buttons = [UIButton]()
+        for views in view.subviews {
+            if let button = views as? UIButton {
+                buttons.append(button)
+            }
+        }
+        return buttons
         
     }
 
