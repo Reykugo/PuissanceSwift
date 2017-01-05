@@ -37,11 +37,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O14-rJ-LEn">
-                                <frame key="frameInset" minX="172" minY="340" width="30" height="30"/>
+                                <frame key="frameInset" minX="172" minY="318" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="test"/>
                                 <connections>
-                                    <action selector="test:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IpR-Jp-aqD"/>
+                                    <action selector="test:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vBX-Wx-GAU"/>
                                 </connections>
                             </button>
                         </subviews>
