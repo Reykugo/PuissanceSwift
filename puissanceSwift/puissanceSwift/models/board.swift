@@ -35,9 +35,18 @@ class Board{
     func IsFull() -> Bool{
         for raw in boxes{
             for box in raw{
-                if box != empty{
+                if box == empty{
                     return false
                 }
+            }
+        }
+        return true
+    }
+    
+    func column_isFull(column:Int) -> Bool{
+        for raw in boxes{
+            if raw[column] == 0{
+                return false
             }
         }
         return true

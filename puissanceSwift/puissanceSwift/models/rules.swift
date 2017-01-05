@@ -62,8 +62,10 @@ class Rules{
         
         for r in 0...board.number_of_raw - 1{
             for c in (0...board.number_of_column - 1){
+                validate = true
                 if board.boxes[r][c] == player{
-                    if c <= board.number_of_column - 4 && r <= board.number_of_column - 4{
+                    if c <= board.number_of_column - 4 && r <= board.number_of_raw - 4{
+                        
                         guard board.boxes[r+1][c+1] == player else{
                             validate = false
                             continue
@@ -84,12 +86,12 @@ class Rules{
                 }
             }
         }
-        validate = true
         
         for r in 0...board.number_of_raw - 1{
             for c in (0...board.number_of_column - 1).reversed() {
+                validate = true
                 if board.boxes[r][c] == player{
-                    if c >= 3 && r <= board.number_of_column - 4{
+                    if c >= 3 && r <= board.number_of_raw - 4{
                         guard board.boxes[r+1][c-1] == player else{
                             validate = false
                         continue
@@ -98,7 +100,7 @@ class Rules{
                             validate = false
                             continue
                         }
-                    
+
                         guard board.boxes[r+3][c-3] == player else{
                             validate = false
                             continue

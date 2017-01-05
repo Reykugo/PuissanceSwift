@@ -44,6 +44,12 @@ class GameManager: Rules{
         }
     }
     
+    func reset_game(){
+        board = Board()
+        win = 0
+        turn_of = 1
+    }
+    
 ///////////////////JEUX TEST///////////////////////////////////////
     
     func test(){
