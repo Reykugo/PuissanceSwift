@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         new_button.isHidden = true
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.gif")!)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,9 +35,9 @@ class ViewController: UIViewController {
     
     // Jeux de test
     
-    @IBAction func test(_ sender: AnyObject) {
+    /*@IBAction func test(_ sender: AnyObject) {
         gameManager.test()
-    }
+    }*/
     
     /////////////////////////////////
 
@@ -48,15 +50,12 @@ class ViewController: UIViewController {
             show_board()
             get_turn()
             check_win()
-        }else{
-            Info.text = "Partie terminé"
-            Info.textColor = UIColor.black
         }
     }
     @IBAction func lauch_new(_ sender: UIButton) {
         gameManager.reset_game()
         Info.text = "Le combat est lancé!!!"
-        Info.textColor = UIColor.black
+        Info.textColor = UIColor.yellow
         new_button.isHidden = true
         show_board()
     }
@@ -79,13 +78,13 @@ class ViewController: UIViewController {
                 Info.textColor = UIColor.green
             }
             else{
-                Info.text = "Les Siths ont détruit les jedis..."
+                Info.text = "Les Siths ont détruit les Jedis..."
                 Info.textColor = UIColor.red
             }
             new_button.isHidden = false
         }else if gameManager.board.IsFull() == true{
             Info.text = "Egalité entre les factions"
-            Info.textColor = UIColor.black
+            Info.textColor = UIColor.yellow
             new_button.isHidden = false
         }
         
