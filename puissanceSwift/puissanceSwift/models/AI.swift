@@ -8,9 +8,9 @@
 
 import Foundation
 
-class AI{
+class AI: Player{
     
-    let level: Int
+    var level: Int
     var block_player = false
     var play_at_random_position = false
     var try_to_win = false
@@ -19,8 +19,11 @@ class AI{
     var scale_to_vertical = 0
     var scale_to_horizontal = 0
     
-    init(_ level: Int){
+    var position_to_play = [Int]()
+    
+    override init(_ level: Int){
         self.level = level
+        super.init(2)
         get_scales_by_level()
     }
     
@@ -52,7 +55,17 @@ class AI{
         }
     }
     
-    func select_action_of_ai(){
+    func select_action_of_ai(board:Board){
+        if level == 1{
+            add(board:board , column: 0)
+        }
+        else if level == 2 {
+            add(board:board , column: 1)
+        }
+        else{
+            add(board:board , column: 2)
+        }
+        
     }
     
     func player_can_win() -> Bool{

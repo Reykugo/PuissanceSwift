@@ -12,7 +12,9 @@ class GameManager: Rules{
     
     var board = Board()
     var player1 = Player(1)
-    var player2 = Player(2)
+    var player2 = AI(1) // ai considerate like player at begin(function of ai don't used)
+    
+    var play_with_ai = false
     
     var turn_of = 1;
     
@@ -28,6 +30,12 @@ class GameManager: Rules{
         }else{
             player2.add(board: board, column: column)
         }
+        win = check_win(board: board)
+        validate_turn()
+    }
+    
+    func play_turn_of_ai(){
+        player2.select_action_of_ai(board: board)
         win = check_win(board: board)
         validate_turn()
     }

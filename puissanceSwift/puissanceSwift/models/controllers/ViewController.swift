@@ -32,6 +32,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Segue"{
+            let optionViewController = segue.destination as! OptionViewController
+            optionViewController.gameManager = gameManager
+            new_game()
+        }
+    }
+    
     
     // Jeux de test
     
@@ -50,15 +58,25 @@ class ViewController: UIViewController {
             show_board()
             get_turn()
             check_win()
+            
+            if gameManager.play_with_ai == true {
+               play_turn_of_ai()
+            }
         }
     }
+    
     @IBAction func lauch_new(_ sender: UIButton) {
-        gameManager.reset_game()
-        Info.text = "Le combat est lancé!!!"
-        Info.textColor = UIColor.yellow
-        new_button.isHidden = true
-        show_board()
+        new_game()
     }
+    
+    func play_turn_of_ai(){
+        if gameManager.win == 0{
+            gameManager.play_turn_of_ai()
+            show_board()
+            check_win()
+        }
+    }
+
     
     func get_turn(){
         if gameManager.turn_of == 1{
@@ -71,6 +89,14 @@ class ViewController: UIViewController {
         }
     }
     
+    func new_game(){
+        gameManager.reset_game()
+        Info.text = "Le combat est lancé!!!"
+        Info.textColor = UIColor.yellow
+        new_button.isHidden = true
+        show_board()
+    }
+    
     func check_win(){
         if gameManager.win != 0 {
             if gameManager.win == 1{
@@ -81,6 +107,7 @@ class ViewController: UIViewController {
                 Info.text = "Les Siths ont détruit les Jedis..."
                 Info.textColor = UIColor.red
             }
+            print(gameManager.win)
             new_button.isHidden = false
         }else if gameManager.board.IsFull() == true{
             Info.text = "Egalité entre les factions"
