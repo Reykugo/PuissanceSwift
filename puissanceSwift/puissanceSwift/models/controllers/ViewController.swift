@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         if gameManager.win == 0{
             gameManager.play_turn_of_ai()
             show_board()
+            get_turn()
             check_win()
         }
     }

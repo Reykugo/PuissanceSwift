@@ -60,6 +60,7 @@
                                     <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ERQ-uR-Kgh">
                                         <frame key="frameInset" minX="142" minY="113" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="1" green="0.65358445526514652" blue="0.01654514589853362" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="change_level:" destination="BCV-Wh-GFV" eventType="valueChanged" id="Skb-qI-oXE"/>
                                         </connections>
@@ -67,6 +68,7 @@
                                     <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TcD-dl-drt">
                                         <frame key="frameInset" minX="276" minY="113" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="1" green="0.096018537018199734" blue="0.067854530588939976" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="change_level:" destination="BCV-Wh-GFV" eventType="valueChanged" id="fGm-O7-iEF"/>
                                         </connections>
