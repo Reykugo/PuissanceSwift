@@ -69,6 +69,7 @@ class OptionViewController: UIViewController {
     
     @IBAction func change_level(_ sender: UISwitch) {
         gameManager.player2.level = sender.tag
+        gameManager.player2.get_scales_by_level()
         configure_levels()
     }
     
