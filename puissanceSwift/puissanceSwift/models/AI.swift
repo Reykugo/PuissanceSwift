@@ -28,8 +28,6 @@ class AI: Player{
     func make_action(scale:Int)->Bool{
         let random_num: UInt32 = arc4random_uniform(100)
         let num: Int = Int(random_num)
-        print(num)
-        print(scale)
         if num >= 0 && num <= scale{
             return true
         }
@@ -95,6 +93,7 @@ class AI: Player{
         if can_win_on_horizontal(player:player, board:board){
             if make_action(scale: scale_to_horizontal) == true{
                 block_player = true
+                print("OK")
                 return true
             }
         }
@@ -118,11 +117,57 @@ class AI: Player{
     }
     
     func can_win_on_horizontal(player:Int, board:Board) -> Bool{
+        for raw in 0...board.number_of_raw - 1{
+            for column in 0...board.number_of_column - 1{
+                if board.boxes[raw][column] == player{
+                    if column+3 <= board.number_of_column - 2{
+                        if column > 0{
+                            if board.isEmpty(board.boxes[raw][column-1]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+2] == player{
+                                if raw + 1 <= board.number_of_raw - 2{
+                                    if board.isEmpty(board.boxes[raw+1][column-1]) == false || raw == board.number_of_raw - 1{
+                                        position_to_play = column - 1
+                                        return true
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if board.isEmpty(board.boxes[raw][column+1]) && board.boxes[raw][column+2] == player && board.boxes[raw][column+3] == player{
+                            if raw + 1 <= board.number_of_raw - 2{
+                                if board.isEmpty(board.boxes[raw+1][column+1]) == false || raw == board.number_of_raw - 1{
+                                    position_to_play = column + 1
+                                    return true
+                                }
+                            }
+                        }
+                        
+                        if board.isEmpty(board.boxes[raw][column+2]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+3] == player{
+                            if raw + 1 <= board.number_of_raw - 2{
+                                if board.isEmpty(board.boxes[raw+1][column+2]) == false || raw == board.number_of_raw - 1{
+                                    position_to_play = column + 2
+                                    return true
+                                }
+                            }
+                        }
+                        
+                        if board.isEmpty(board.boxes[raw][column+3]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+2] == player{
+                            if raw + 1 <= board.number_of_raw - 2{
+                                if board.isEmpty(board.boxes[raw+1][column+3]) == false || raw == board.number_of_raw - 1{
+                                    position_to_play = column + 3
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return false
     }
     
     func can_win_on_vertical(player:Int, board:Board) -> Bool{
         var validate = true
+        position_to_play = 0
         for raw in 0...board.number_of_raw - 1{
             for column in 0...board.number_of_column - 1{
                 validate = true
