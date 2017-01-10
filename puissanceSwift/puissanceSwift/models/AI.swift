@@ -93,7 +93,6 @@ class AI: Player{
         if can_win_on_horizontal(player:player, board:board){
             if make_action(scale: scale_to_horizontal) == true{
                 block_player = true
-                print("OK")
                 return true
             }
         }
@@ -123,7 +122,10 @@ class AI: Player{
                     if column+3 <= board.number_of_column - 2{
                         if column > 0{
                             if board.isEmpty(board.boxes[raw][column-1]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+2] == player{
-                                if raw + 1 <= board.number_of_raw - 2{
+                                if raw >= board.number_of_raw - 1{
+                                    position_to_play = column - 1
+                                    return true
+                                }else{
                                     if board.isEmpty(board.boxes[raw+1][column-1]) == false || raw == board.number_of_raw - 1{
                                         position_to_play = column - 1
                                         return true
@@ -133,7 +135,11 @@ class AI: Player{
                         }
                         
                         if board.isEmpty(board.boxes[raw][column+1]) && board.boxes[raw][column+2] == player && board.boxes[raw][column+3] == player{
-                            if raw + 1 <= board.number_of_raw - 2{
+                            if raw >= board.number_of_raw - 1{
+                                position_to_play = column + 1
+                                return true
+                            }
+                            else{
                                 if board.isEmpty(board.boxes[raw+1][column+1]) == false || raw == board.number_of_raw - 1{
                                     position_to_play = column + 1
                                     return true
@@ -142,7 +148,11 @@ class AI: Player{
                         }
                         
                         if board.isEmpty(board.boxes[raw][column+2]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+3] == player{
-                            if raw + 1 <= board.number_of_raw - 2{
+                            if raw >= board.number_of_raw - 1{
+                                position_to_play = column + 2
+                                return true
+                            }
+                            else{
                                 if board.isEmpty(board.boxes[raw+1][column+2]) == false || raw == board.number_of_raw - 1{
                                     position_to_play = column + 2
                                     return true
@@ -151,12 +161,17 @@ class AI: Player{
                         }
                         
                         if board.isEmpty(board.boxes[raw][column+3]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+2] == player{
-                            if raw + 1 <= board.number_of_raw - 2{
+                            if raw >= board.number_of_raw - 1{
+                                position_to_play = column + 3
+                                return true
+                                
+                            }else{
                                 if board.isEmpty(board.boxes[raw+1][column+3]) == false || raw == board.number_of_raw - 1{
                                     position_to_play = column + 3
                                     return true
                                 }
                             }
+                            
                         }
                     }
                 }
