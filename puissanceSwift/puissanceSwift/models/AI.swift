@@ -36,17 +36,17 @@ class AI: Player{
     
     func get_scales_by_level(){
         if level == 1 {
-            scale_to_diagonal = 25
-            scale_to_vertical = 75
-            scale_to_horizontal = 50
+            scale_to_diagonal = 50
+            scale_to_vertical = 100
+            scale_to_horizontal = 75
         }
         else if level == 2{
-            scale_to_diagonal = 50
-            scale_to_horizontal = 75
+            scale_to_diagonal = 75
+            scale_to_horizontal = 100
             scale_to_vertical = 100
         }
         else{
-            scale_to_diagonal = 75
+            scale_to_diagonal = 100
             scale_to_vertical = 100
             scale_to_horizontal = 100
         }
@@ -160,7 +160,7 @@ class AI: Player{
         for raw in 0...board.number_of_raw - 1{
             for column in 0...board.number_of_column - 1{
                 if board.boxes[raw][column] == player{
-                    if column+3 <= board.number_of_column - 2{
+                    if column+3 <= board.number_of_column - 1{
                         if column > 0{
                             if board.isEmpty(board.boxes[raw][column-1]) && board.boxes[raw][column+1] == player && board.boxes[raw][column+2] == player{
                                 if raw == board.number_of_raw - 1{
@@ -227,7 +227,9 @@ class AI: Player{
             for column in 0...board.number_of_column - 1{
                 if board.boxes[raw][column] == player{
                     //diagonal de gauche à droite
-                    if column+3 <= board.number_of_column - 2 && raw+3 <= board.number_of_raw-4{
+                    print(raw+3)
+                    print(board.number_of_raw-3)
+                    if column+3 <= board.number_of_column - 1 && raw+3 <= board.number_of_raw-3{
                         if column > 0 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column-1]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+2][column+2] == player{
                                 if board.isEmpty(board.boxes[raw][column-1]) == false{
@@ -261,7 +263,7 @@ class AI: Player{
                     }
                     
                     //diagonal de droite a gauche
-                    if column-3 <= 1 && raw+3 <= board.number_of_raw-4{
+                    if column-3 <= 0 && raw+3 <= board.number_of_raw-3{
                         if column == board.number_of_column - 2 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column+1]) && board.boxes[raw+1][column-1] == player && board.boxes[raw+2][column-2] == player{
                                 if raw+3 >= board.number_of_raw - 1{

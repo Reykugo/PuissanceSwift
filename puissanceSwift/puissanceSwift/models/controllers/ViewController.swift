@@ -115,7 +115,6 @@ class ViewController: UIViewController {
             Info.textColor = UIColor.yellow
             new_button.isHidden = false
         }
-        
     }
     
     func show_board(){
