@@ -55,26 +55,37 @@ class AI: Player{
     func select_action_of_ai(board:Board){
         block_player = false
         position_to_play = 0
-        if player_can_win(player: 1, board: board) == true && block_player == true{
-            self.add(board: board, column: position_to_play)
+        guard ai_can_win(board: board) else{
+            if player_can_win(player: 1, board: board) == true && block_player == true{
+                self.add(board: board, column: position_to_play)
+            }
+            else{
+                choose_position_to_play(board: board)
+            }
+            return
         }
-        else{
-            choose_position_to_play(board: board)
-        }
-        
     }
     
-    func choose_position_to_play(board:Board){
+    func ai_can_win(board:Board) -> Bool{
         if can_win_on_horizontal(player: 2, board: board) == true{
             self.add(board:board, column: position_to_play)
+            return true
         }
         else if can_win_on_vertical(player: 2, board: board){
             self.add(board:board, column: position_to_play)
+            return true
         }
         else if can_win_on_diagonal(player: 2, board: board){
             self.add(board:board, column: position_to_play)
+            return true
         }
-        else{
+        return false
+    }
+    
+    func choose_position_to_play(board:Board){
+        if play_around_last_action_of_player(player: 1, board: board){
+            self.add(board:board, column: position_to_play)
+        }else{
             play_at_random_position(board:board)
         }
     }
@@ -87,6 +98,30 @@ class AI: Player{
         }else{
             self.add(board:board, column: num)
         }
+    }
+    func play_around_last_action_of_player(player:Int, board:Board) -> Bool{
+        var last_box = board.last_box_played
+        if last_box["raw"]! > 0 && last_box["raw"]! < board.number_of_raw - 1{
+            if board.boxes[last_box["raw"]!+1][last_box["column"]!] == player && board.isEmpty(board.boxes[last_box["raw"]!-1][last_box["column"]!]){
+                print("OK")
+                position_to_play = last_box["column"]!
+                return true
+            }
+        }
+        
+        if last_box["column"]! > 0 && last_box["column"]! < board.number_of_column - 1{
+            if board.boxes[last_box["raw"]!][last_box["column"]!+1] == player && board.isEmpty(board.boxes[last_box["raw"]!][last_box["column"]!-1]){
+                print("OK1")
+                position_to_play = last_box["column"]! - 1
+                return true
+            }
+            if board.boxes[last_box["raw"]!][last_box["column"]!-1] == player && board.isEmpty(board.boxes[last_box["raw"]!][last_box["column"]!+1]){
+                position_to_play = last_box["column"]! + 1
+                print("OK2")
+                return true
+            }
+        }
+        return false
     }
     
     func player_can_win(player:Int, board:Board) -> Bool{
@@ -227,8 +262,6 @@ class AI: Player{
             for column in 0...board.number_of_column - 1{
                 if board.boxes[raw][column] == player{
                     //diagonal de gauche à droite
-                    print(raw+3)
-                    print(board.number_of_raw-3)
                     if column+3 <= board.number_of_column - 1 && raw+3 <= board.number_of_raw-3{
                         if column > 0 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column-1]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+2][column+2] == player{
