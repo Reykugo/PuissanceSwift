@@ -108,7 +108,6 @@ class ViewController: UIViewController {
                 Info.text = "Les Siths ont détruit les Jedis..."
                 Info.textColor = UIColor.red
             }
-            print(gameManager.win)
             new_button.isHidden = false
         }else if gameManager.board.IsFull() == true{
             Info.text = "Egalité entre les factions"

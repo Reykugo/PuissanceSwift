@@ -101,24 +101,37 @@ class AI: Player{
     }
     func play_around_last_action_of_player(player:Int, board:Board) -> Bool{
         var last_box = board.last_box_played
+        //vertical
         if last_box["raw"]! > 0 && last_box["raw"]! < board.number_of_raw - 1{
             if board.boxes[last_box["raw"]!+1][last_box["column"]!] == player && board.isEmpty(board.boxes[last_box["raw"]!-1][last_box["column"]!]){
-                print("OK")
                 position_to_play = last_box["column"]!
                 return true
             }
         }
-        
+        //horizontal
         if last_box["column"]! > 0 && last_box["column"]! < board.number_of_column - 1{
             if board.boxes[last_box["raw"]!][last_box["column"]!+1] == player && board.isEmpty(board.boxes[last_box["raw"]!][last_box["column"]!-1]){
-                print("OK1")
-                position_to_play = last_box["column"]! - 1
-                return true
+                if last_box["raw"] == board.number_of_raw - 1{
+                    position_to_play = last_box["column"]! - 1
+                    return true
+                }else{
+                    if board.isEmpty(board.boxes[last_box["raw"]!+1][last_box["column"]!-1]) == false{
+                        position_to_play = last_box["column"]! - 1
+                        return true
+                    }
+                }
             }
             if board.boxes[last_box["raw"]!][last_box["column"]!-1] == player && board.isEmpty(board.boxes[last_box["raw"]!][last_box["column"]!+1]){
-                position_to_play = last_box["column"]! + 1
-                print("OK2")
-                return true
+                if last_box["raw"] == board.number_of_raw - 1 {
+                    position_to_play = last_box["column"]! + 1
+                    return true
+                }else{
+                    if board.isEmpty(board.boxes[last_box["raw"]!+1][last_box["column"]!+1]) == false{
+                        position_to_play = last_box["column"]! + 1
+                        return true
+                    }
+                }
+                
             }
         }
         return false
@@ -262,10 +275,11 @@ class AI: Player{
             for column in 0...board.number_of_column - 1{
                 if board.boxes[raw][column] == player{
                     //diagonal de gauche à droite
-                    if column+3 <= board.number_of_column - 1 && raw+3 <= board.number_of_raw-3{
+                    if column + 3 <= board.number_of_column - 1 && raw + 3 <= board.number_of_raw - 1{
                         if column > 0 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column-1]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+2][column+2] == player{
                                 if board.isEmpty(board.boxes[raw][column-1]) == false{
+                                    print("OK1")
                                     position_to_play = column - 1
                                     return true
                                 }
@@ -275,6 +289,7 @@ class AI: Player{
                         if board.isEmpty(board.boxes[raw+1][column+1]) && board.boxes[raw+2][column+2] == player && board.boxes[raw+3][column+3] == player{
                             if board.isEmpty(board.boxes[raw+2][column+1]) == false{
                                 position_to_play = column + 1
+                                print("OK2")
                                 return true
                             }
                         }
@@ -282,73 +297,66 @@ class AI: Player{
                         if board.isEmpty(board.boxes[raw+2][column+2]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+3][column+3] == player{
                             if board.isEmpty(board.boxes[raw+3][column+2]) == false{
                                 position_to_play = column + 2
+                                print("OK3")
                                 return true
                             }
                         }
                         
                         if board.isEmpty(board.boxes[raw+3][column+3]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+2][column+2] == player{
-
-                            if board.isEmpty(board.boxes[raw+4][column+3]) == false{
+                            if raw+3 == board.number_of_raw - 1{
                                 position_to_play = column + 3
+                                print("OK4")
                                 return true
+                            }else{
+                                if board.isEmpty(board.boxes[raw+4][column+3]) == false{
+                                    position_to_play = column + 3
+                                    print("OK4")
+                                    return true
+                                }
                             }
                         }
                     }
                     
                     //diagonal de droite a gauche
-                    if column-3 <= 0 && raw+3 <= board.number_of_raw-3{
-                        if column == board.number_of_column - 2 && raw > 0{
+                    if column - 3 >= 0 && raw+3 <= board.number_of_raw - 1{
+                        if column < board.number_of_column - 1 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column+1]) && board.boxes[raw+1][column-1] == player && board.boxes[raw+2][column-2] == player{
-                                if raw+3 >= board.number_of_raw - 1{
+                                if board.isEmpty(board.boxes[raw][column+1]) == false{
                                     position_to_play = column + 1
+                                    print("OK5")
                                     return true
-                                }else{
-                                    if board.isEmpty(board.boxes[raw][column+1]) == false{
-                                        position_to_play = column + 1
-                                        return true
-                                    }
                                 }
                             }
                         }
                         
                         if board.isEmpty(board.boxes[raw+1][column-1]) && board.boxes[raw+2][column-2] == player && board.boxes[raw+3][column-3] == player{
-                            if raw+3 >= board.number_of_raw - 1{
+                            if board.isEmpty(board.boxes[raw+2][column-1]) == false{
                                 position_to_play = column - 1
+                                print("OK6")
                                 return true
-                            }
-                            else{
-                                if board.isEmpty(board.boxes[raw+2][column-1]) == false{
-                                    position_to_play = column - 1
-                                    return true
-                                }
                             }
                         }
                         
                         if board.isEmpty(board.boxes[raw+2][column-2]) && board.boxes[raw+1][column-1] == player && board.boxes[raw+3][column-3] == player{
-                            if raw+3 >= board.number_of_raw - 1{
+                            if board.isEmpty(board.boxes[raw+3][column-2]) == false{
                                 position_to_play = column - 2
+                                print("OK7")
                                 return true
-                            }
-                            else{
-                                if board.isEmpty(board.boxes[raw+3][column-2]) == false{
-                                    position_to_play = column - 2
-                                    return true
-                                }
                             }
                         }
                         
                         if board.isEmpty(board.boxes[raw+3][column-3]) && board.boxes[raw+1][column-1] == player && board.boxes[raw+2][column-2] == player{
-                            if raw+3 >= board.number_of_raw - 1{
+                            if raw+3 == board.number_of_raw - 1{
                                 position_to_play = column - 3
+                                print("OK8")
                                 return true
-                                
                             }else{
                                 if board.isEmpty(board.boxes[raw+4][column-3]) == false{
                                     position_to_play = column - 3
+                                    print("OK8")
                                     return true
                                 }
                             }
-                            
                         }
                     }
                 }
