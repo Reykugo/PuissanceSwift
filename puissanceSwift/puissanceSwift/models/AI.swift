@@ -275,8 +275,8 @@ class AI: Player{
             for column in 0...board.number_of_column - 1{
                 if board.boxes[raw][column] == player{
                     //diagonal de gauche à droite
-                    if column + 3 <= board.number_of_column - 1 && raw + 3 <= board.number_of_raw - 1{
-                        if column > 0 && raw > 0{
+                    if column + 3 <= board.number_of_column - 1 && raw + 2 <= board.number_of_raw - 1{
+                        if column - 1 >= 0 && raw - 1 >= 0{
                             if board.isEmpty(board.boxes[raw-1][column-1]) && board.boxes[raw+1][column+1] == player && board.boxes[raw+2][column+2] == player{
                                 if board.isEmpty(board.boxes[raw][column-1]) == false{
                                     print("OK1")
@@ -285,7 +285,8 @@ class AI: Player{
                                 }
                             }
                         }
-                        
+                    }
+                    if column + 3 <= board.number_of_column - 1 && raw + 3 <= board.number_of_raw - 1{
                         if board.isEmpty(board.boxes[raw+1][column+1]) && board.boxes[raw+2][column+2] == player && board.boxes[raw+3][column+3] == player{
                             if board.isEmpty(board.boxes[raw+2][column+1]) == false{
                                 position_to_play = column + 1
@@ -318,7 +319,7 @@ class AI: Player{
                     }
                     
                     //diagonal de droite a gauche
-                    if column - 3 >= 0 && raw+3 <= board.number_of_raw - 1{
+                    if column - 3 >= 0 && raw+2 <= board.number_of_raw - 1{
                         if column < board.number_of_column - 1 && raw > 0{
                             if board.isEmpty(board.boxes[raw-1][column+1]) && board.boxes[raw+1][column-1] == player && board.boxes[raw+2][column-2] == player{
                                 if board.isEmpty(board.boxes[raw][column+1]) == false{
@@ -328,7 +329,8 @@ class AI: Player{
                                 }
                             }
                         }
-                        
+                    }
+                    if column - 3 >= 0 && raw+3 <= board.number_of_raw - 1{
                         if board.isEmpty(board.boxes[raw+1][column-1]) && board.boxes[raw+2][column-2] == player && board.boxes[raw+3][column-3] == player{
                             if board.isEmpty(board.boxes[raw+2][column-1]) == false{
                                 position_to_play = column - 1
