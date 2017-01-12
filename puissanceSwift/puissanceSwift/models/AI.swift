@@ -85,10 +85,15 @@ class AI: Player{
     func choose_position_to_play(board:Board){
         if play_around_last_action_of_player(player: 1, board: board){
             self.add(board:board, column: position_to_play)
+            if player_can_win(player: 1, board: board) == true{
+                board.remove()
+                play_at_random_position(board: board)
+            }
         }else{
             play_at_random_position(board:board)
         }
     }
+    
     
     func play_at_random_position(board:Board){
         let random_num: UInt32 = arc4random_uniform(UInt32(board.number_of_column - 1))
