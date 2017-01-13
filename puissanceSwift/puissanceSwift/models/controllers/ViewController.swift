@@ -40,15 +40,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    // Jeux de test
-    
-    /*@IBAction func test(_ sender: AnyObject) {
-        gameManager.test()
-    }*/
-    
-    /////////////////////////////////
-
     @IBAction func play(_ sender: UIButton) {
         guard gameManager.board.column_isFull(column: sender.tag) == false else{
             return
